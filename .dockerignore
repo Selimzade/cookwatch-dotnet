@@ -1,0 +1,13 @@
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/Properties
+**/.editorconfig
+Dockerfile
+docker-compose.yml
+docker-compose.*.yml
