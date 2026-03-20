@@ -18,8 +18,12 @@ public class MongoDbService
     public MongoDbService(IConfiguration configuration)
     {
         var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI")
-            ?? configuration["MongoDB:ConnectionString"]
-            ?? throw new InvalidOperationException("MongoDB connection string is not configured.");
+            ?? configuration["MongoDB:ConnectionString"];
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+            throw new InvalidOperationException(
+                "MONGODB_URI environment variable is not set. " +
+                "Please configure it in Railway: Settings → Variables → MONGODB_URI");
 
         var databaseName = configuration["MongoDB:DatabaseName"] ?? "cookwatch";
 
